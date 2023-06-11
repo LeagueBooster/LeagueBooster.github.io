@@ -1,3 +1,39 @@
+function selectRank(container, rank) {
+  const currentContainer = document.querySelector('.container.current');
+  const targetContainer = document.querySelector('.container.target');
+
+  if (container === 'current') {
+    const currentImages = currentContainer.querySelectorAll('.box img');
+    currentImages.forEach(img => {
+      img.classList.remove('selected');
+    });
+    currentImages[rank - 1].classList.add('selected');
+    document.getElementById('currentRank').value = rank;
+  } else if (container === 'target') {
+    const targetImages = targetContainer.querySelectorAll('.box img');
+    targetImages.forEach(img => {
+      img.classList.remove('selected');
+    });
+    targetImages[rank - 1].classList.add('selected');
+    document.getElementById('targetRank').value = rank;
+  }
+
+  // Check if both current and target ranks are selected
+  const currentSelected = currentContainer.querySelector('.box img.selected');
+  const targetSelected = targetContainer.querySelector('.box img.selected');
+  const submitButton = document.getElementById('submit-button');
+
+  if (currentSelected && targetSelected) {
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
+  }
+
+  calculatePrice();
+}
+
+// Replace the existing calculatePrice() function with the updated code
+
 async function calculatePrice() {
   const currentContainer = document.querySelector('.container.current');
   const targetContainer = document.querySelector('.container.target');
@@ -35,3 +71,51 @@ async function calculatePrice() {
   // Display the calculated price
   priceDisplay.textContent = `Price: ${convertedPrice ? convertedPrice.toFixed(2) + ' ' + selectedCurrency : 'N/A'}`;
 }
+
+function submitForm(event) {
+  event.preventDefault(); // Prevent form submission
+
+  const emailInput = document.getElementById('email');
+  const phoneNumberInput = document.getElementById('phone');
+  const facebookInput = document.getElementById('facebook');
+  const summonerInput = document.getElementById('summoner');
+  const currentRankInput = document.getElementById('currentRank');
+  const targetRankInput = document.getElementById('targetRank');
+  const regionInput = document.getElementById('region');
+
+  // Check if any of the required fields are empty
+  if (
+    emailInput.value.trim() === '' ||
+    phoneNumberInput.value.trim() === '' ||
+    facebookInput.value.trim() === '' ||
+    summonerInput.value.trim() === '' ||
+    (currentRankInput.value.trim() === '' || currentRankInput.value.trim() === 'current') ||
+    (targetRankInput.value.trim() === '' || targetRankInput.value.trim() === 'target') ||
+    regionInput.value.trim() === ''
+  ) {
+    alert('Please fill in all the required fields and select ranks and region.');
+    return; // Stop further execution
+  }
+
+  // Form validation passed, submit the form
+  document.getElementById('purchase-form').submit();
+}
+
+// Add event listeners
+const currentImages = document.querySelectorAll('.container.current .box img');
+const targetImages = document.querySelectorAll('.container.target .box img');
+const submitButton = document.getElementById('submit-button');
+
+currentImages.forEach((img, rank) => {
+  img.addEventListener('click', () => {
+    selectRank('current', rank + 1);
+  });
+});
+
+targetImages.forEach((img, rank) => {
+  img.addEventListener('click', () => {
+    selectRank('target', rank + 1);
+  });
+});
+
+submitButton.addEventListener('click', submitForm);
