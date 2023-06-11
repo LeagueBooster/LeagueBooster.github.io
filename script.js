@@ -100,44 +100,12 @@ function submitForm(event) {
     return; // Stop further execution
   }
 
-  // Update the form data with the price and currency values
-  const formData = new FormData();
-  formData.append('email', emailInput.value);
-  formData.append('phone', phoneNumberInput.value);
-  formData.append('facebook', facebookInput.value);
-  formData.append('summoner', summonerInput.value);
-  formData.append('currentRank', currentRankInput.value);
-  formData.append('targetRank', targetRankInput.value);
-  formData.append('region', regionInput.value);
-  formData.append('price', priceInput.value);
-  formData.append('currency', currencyInput.value);
+  // Update the hidden price and currency inputs
+  document.getElementById('price').value = priceInput.value;
+  document.getElementById('currency').value = currencyInput.value;
 
-  // Submit the form with the updated form data
-  fetch('https://formsubmit.co/leagueboostertn@gmail.com', {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => {
-      if (response.ok) {
-        alert('Form submitted successfully!');
-        // Reset the form fields
-        emailInput.value = '';
-        phoneNumberInput.value = '';
-        facebookInput.value = '';
-        summonerInput.value = '';
-        currentRankInput.value = '';
-        targetRankInput.value = '';
-        regionInput.value = '';
-        priceInput.value = '';
-        currencyInput.value = '';
-      } else {
-        alert('Form submission failed. Please try again.');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('An error occurred while submitting the form. Please try again later.');
-    });
+  // Submit the form
+  document.getElementById('purchase-form').submit();
 }
 
 // Add event listeners
