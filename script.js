@@ -39,12 +39,12 @@ async function calculatePrice() {
   const targetContainer = document.querySelector('.container.target');
   const currentRankInput = currentContainer.querySelector('.box img.selected');
   const targetRankInput = targetContainer.querySelector('.box img.selected');
-  const priceDisplay = document.getElementById('price-display');
-  const currencySelect = document.getElementById('currency-select');
-  const selectedCurrency = currencySelect.value;
+  const priceInput = document.getElementById('price');
+  const currencyInput = document.getElementById('currency');
+  const selectedCurrency = currencyInput.value;
 
   if (!currentRankInput || !targetRankInput) {
-    priceDisplay.textContent = 'Price: N/A';
+    priceInput.value = '';
     return;
   }
 
@@ -68,8 +68,9 @@ async function calculatePrice() {
   const conversionRate = data.rates[selectedCurrency];
   const convertedPrice = price * conversionRate;
 
-  // Display the calculated price
-  priceDisplay.textContent = `Price: ${convertedPrice ? convertedPrice.toFixed(2) + ' ' + selectedCurrency : 'N/A'}`;
+  // Update the hidden price and currency inputs
+  priceInput.value = convertedPrice ? convertedPrice.toFixed(2) : '';
+  currencyInput.value = selectedCurrency;
 }
 
 function submitForm(event) {
