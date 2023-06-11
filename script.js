@@ -83,6 +83,8 @@ function submitForm(event) {
   const currentRankInput = document.getElementById('currentRank');
   const targetRankInput = document.getElementById('targetRank');
   const regionInput = document.getElementById('region');
+  const priceInput = document.getElementById('price');
+  const currencyInput = document.getElementById('currency');
 
   // Check if any of the required fields are empty
   if (
@@ -98,8 +100,44 @@ function submitForm(event) {
     return; // Stop further execution
   }
 
-  // Form validation passed, submit the form
-  document.getElementById('purchase-form').submit();
+  // Update the form data with the price and currency values
+  const formData = new FormData();
+  formData.append('email', emailInput.value);
+  formData.append('phone', phoneNumberInput.value);
+  formData.append('facebook', facebookInput.value);
+  formData.append('summoner', summonerInput.value);
+  formData.append('currentRank', currentRankInput.value);
+  formData.append('targetRank', targetRankInput.value);
+  formData.append('region', regionInput.value);
+  formData.append('price', priceInput.value);
+  formData.append('currency', currencyInput.value);
+
+  // Submit the form with the updated form data
+  fetch('https://formsubmit.co/leagueboostertn@gmail.com', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => {
+      if (response.ok) {
+        alert('Form submitted successfully!');
+        // Reset the form fields
+        emailInput.value = '';
+        phoneNumberInput.value = '';
+        facebookInput.value = '';
+        summonerInput.value = '';
+        currentRankInput.value = '';
+        targetRankInput.value = '';
+        regionInput.value = '';
+        priceInput.value = '';
+        currencyInput.value = '';
+      } else {
+        alert('Form submission failed. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while submitting the form. Please try again later.');
+    });
 }
 
 // Add event listeners
