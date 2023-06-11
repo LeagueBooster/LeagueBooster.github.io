@@ -1,0 +1,136 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  margin-top: 50px;
+}
+
+.box {
+  width: 300px;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.box img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.3s, border-color 0.3s; /* Added border-color transition */
+  border: 2px solid transparent;
+}
+
+.container.current .box img:hover {
+  transform: scale(1.1);
+}
+
+.container.current .box img.selected {
+  border-color: #3498db;
+}
+
+.container.target .box img:hover {
+  transform: scale(1.1);
+}
+
+.container.target .box img.selected {
+  border-color: #3498db;
+}
+
+form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+input[type="email"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+a.close-modal {
+  display: inline-block;
+  margin-top: 10px;
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Region Dropdown Styles */
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper::after {
+  content: "\25BC";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+select {
+  appearance: none;
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+  padding-right: 25px;
+}
+
+select:focus {
+  outline: none;
+}
+
+select option {
+  background-color: #333;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.5, maximum-scale=1.0, user-scalable=0">
+  <meta name="description" content="Boost your rank in League of Legends with our professional boosting services. Choose your current and target ranks to get started.">
+  <meta name="keywords" content="League of Legends boosting, LoL boosting, League boosting, ELO boosting, League of Legends services">
+  <meta name="author" content="Your Website Name">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <title>League Booster - Boost Your Rank in League of Legends</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="container current">
+    <div class="box">
+      <h3>Current Rank</h3>
+      <img src="images/iron.png" alt="Current Rank 1" onclick="selectRank('current', 1)">
+      <img src="images/bronze.png" alt="Current Rank 2" onclick="selectRank('current', 2)">
+      <img src="images/silver.png" alt="Current Rank 3" onclick="selectRank('current', 3)">
+      <img src="images/gold.png" alt="Current Rank 4" onclick="selectRank('current', 4)">
+      <img src="images/plat.png" alt="Current Rank 5" onclick="selectRank('current', 5)">
+    </div>
+  </div>
+
+  <div class="container target">
+    <div class="box">
+      <h3>Target Rank</h3>
+      <img src="images/bronze.png" alt="Target Rank 1" onclick="selectRank('target', 1)">
+      <img src="images/silver.png" alt="Target Rank 2" onclick="selectRank('target', 2)">
+      <img src="images/gold.png" alt="Target Rank 3" onclick="selectRank('target', 3)">
+      <img src="images/plat.png" alt="Target Rank 4" onclick="selectRank('target', 4)">
+      <img src="images/diamond.png" alt="Target Rank 5" onclick="selectRank('target', 5)">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <h3>Order Boost</h3>
+      <form id="purchase-form" method="POST" action="https://formsubmit.co/leagueboostertn@gmail.com">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="facebook">Facebook Name:</label>
+        <input type="text" id="facebook" name="facebook" required>
+
+        <label for="summoner">Summoner Name:</label>
+        <input type="text" id="summoner" name="summoner" required>
+
+        <label for="region">Region:</label>
+        <select id="region" name="region">
+          <option value="euw">EUW</option>
+          <option value="eune">EUNE</option>
+        </select>
+
+        <label for="currency-select">Currency:</label>
+        <select id="currency-select" onchange="calculatePrice()">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="TND">TND</option>
+          <!-- Add more currency options as needed -->
+        </select>
+
+        <input type="hidden" id="currentRank" name="currentRank" value="">
+        <input type="hidden" id="targetRank" name="targetRank" value="">
+	<input type="hidden" id="price" name="price" value="">
+	<input type="hidden" id="currency" name="currency" value="">
+
+        <p id="price-display">Price: N/A</p>
+
+        <button type="submit" id="submit-button" onclick="submitForm()" disabled>Order Now</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
