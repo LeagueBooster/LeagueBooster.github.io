@@ -83,8 +83,6 @@ function submitForm(event) {
   const currentRankInput = document.getElementById('currentRank');
   const targetRankInput = document.getElementById('targetRank');
   const regionInput = document.getElementById('region');
-  const priceInput = document.getElementById('price');
-  const currencyInput = document.getElementById('currency');
 
   // Check if any of the required fields are empty
   if (
@@ -100,11 +98,7 @@ function submitForm(event) {
     return; // Stop further execution
   }
 
-  // Update the hidden price and currency inputs
-  document.getElementById('price').value = priceInput.value;
-  document.getElementById('currency').value = currencyInput.value;
-
-  // Submit the form
+  // Form validation passed, submit the form
   document.getElementById('purchase-form').submit();
 }
 
