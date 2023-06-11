@@ -82,6 +82,7 @@ function submitForm(event) {
   const currentRankInput = document.getElementById('currentRank');
   const targetRankInput = document.getElementById('targetRank');
   const regionInput = document.getElementById('region');
+  const priceInput = document.getElementById('price');
 
   // Check if any of the required fields are empty
   if (
@@ -96,6 +97,10 @@ function submitForm(event) {
     alert('Please fill in all the required fields and select ranks and region.');
     return; // Stop further execution
   }
+
+  // Set the price value
+  const priceDisplay = document.getElementById('price-display');
+  priceInput.value = priceDisplay.textContent.replace('Price: ', '');
 
   // Form validation passed, submit the form
   document.getElementById('purchase-form').submit();
